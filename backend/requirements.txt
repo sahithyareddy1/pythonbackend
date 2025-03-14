@@ -1,0 +1,6 @@
+Flask
+flask-cors
+face-recognition
+pymongo
+numpy
+pillow
