@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #faf8f800; /* Light gray background */
+        }
+        .header {
+            background-color: #000000; /* Dark background for header */
+            color: white;
+        }
+        .party-card {
+            border: 1px solid #dacece6c;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .party-card:hover {
+            background-color: #efeee953; /* Light gray on hover */
+        }
+        .selected-party {
+            border: 2px solid #ff0000; /* Blue border for selected party */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header p-3 mb-4">
+            <h1>Voter Dashboard</h1>
+            <p>Unique ID: {{ unique_id }} | EC ID: {{ ec_id }}</p>
+        </header>
+        <main class="container">
+            <h2 class="text-center mb-4">Cast Your Vote</h2>
+            <div class="row justify-content-center">
+                {% for party in parties %}
+                <div class="col-md-4 mb-3">
+                    <div class="party-card {% if party.id == selected_party %}selected-party{% endif %}" onclick="selectParty({{ party.id }})">
+                        <img src="{{ party.logo }}" alt="{{ party.name }}" class="img-fluid">
+                        <p>{{ party.name }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary">Vote</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
